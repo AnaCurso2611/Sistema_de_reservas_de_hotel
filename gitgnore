@@ -1,0 +1,25 @@
+# Ignore arquivos e pastas desnecessários
+
+# Arquivos de backup criados por editores de texto
+*.bak
+*.tmp
+*.log
+
+# Arquivos temporários do MySQL
+*.frm
+*.ibd
+*.myd
+*.myi
+
+# Credenciais e arquivos sensíveis
+*.env
+config.php
+
+# Arquivos de cache ou temporários
+*.DS_Store
+Thumbs.db
+.cache/
+
+# Padrões globais
+*.swp
+*.swo
