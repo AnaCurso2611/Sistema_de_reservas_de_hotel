@@ -1,0 +1,92 @@
+drop database Reservas_Hotel;
+create database Reservas_Hotel;
+use Reservas_Hotel;
+
+create table Hospedes ( 
+hospedeID int auto_increment primary key,
+nome varchar (100) not null,
+telefone varchar (15),
+email varchar (100)
+);
+
+create table Quartos(
+quartoID int primary key,
+numero int not null unique,
+tipo varchar (50),
+preco decimal (10,2) not null
+);
+
+create table Reservas(
+reservaID int auto_increment primary key,
+hospedeID int,
+quartoID int,
+dataChekin date not null,
+dataChekout date not null,
+foreign key (hospedeID) references Hospedes(hospedeID),
+foreign key (quartoID) references Quartos(quartoID)
+);
+
+insert into Hospedes (hospedeID,nome, telefone, email) values
+('1','Pessoa1','123456789103456','pessoa1@gmail.com'),
+('2','Pessoa2','987654321112345','pessoa2@gmail.com'),
+('3','pessoa3','567892643807257','pessoa3@gmail.com'),
+('4','pessoa4','789236734652837','pessoa4@gmail.com'),
+('5','pessoa5','647526427179645','pessoa5@gmail.com');
+
+insert into Quartos (quartoID,numero,tipo,preco) values
+('101','11','presidencial','1000'),
+('102','12','presidencial','1000'),
+('103','13','suite','850'),
+('104','14','suite','850'),
+('105','15','grande','600'),
+('106','16','grande','600'),
+('107','17','médio','300'),
+('108','18','médio','300'),
+('109','19','pequeno','200'),
+('110','20','pequeno','200');
+
+insert into Reservas (hospedeID,quartoID,dataChekin,dataChekout) values
+('1','101','2024-02-10','2024-03-22'),
+('2','107','2024-06-03','2024-07-05'),
+('3','105','2024-05-12','2025-01-05'),
+('4','109','2024-01-07','2024-11-06'),
+('5','101','2024-07-15','2024-10-12');
+
+select 
+    h.nome as hóspede,
+    q.numero as quarto,
+    q.tipo as tipo,
+    q.preco as preço,
+    r.dataChekin as checkin,
+    r.dataChekout as checkout
+from Reservas r
+join Hospedes h on r.hospedeID = h.hospedeID
+join Quartos q on r.quartoID = q.quartoID
+limit 0, 1000;
+
+select
+    q.numero as quarto, 
+    q.tipo as tipo, 
+    q.preco as preco 
+from Quartos q 
+left join Reservas r on q.quartoID = r.quartoID 
+and (r.dataChekin = '2024-02-10' and r.dataChekout = '2024-03-22') 
+where r.quartoID is null 
+limit 0, 1000;
+
+update Hospedes 
+set telefone = '987654321112345' and email = 'pessoa2@gmail.com'
+where hospedeID = 2;
+
+update Quartos
+set preco = 300
+where quartoID = 107;
+
+delete from Reservas
+where reservaID=5;
+
+delete from Hospedes
+where hospedeID = 5;
+
+delete from reservas
+where hospedeID = 5;
