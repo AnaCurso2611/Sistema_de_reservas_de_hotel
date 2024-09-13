@@ -1,0 +1,81 @@
+# Sistema de Gerenciamento de Reservas de Hotel
+
+Este projeto implementa um sistema simples de gerenciamento de reservas de hotel usando SQL. Ele cria tabelas para armazenar informações de hóspedes, quartos e reservas, além de permitir consultas, atualizações e exclusões de registros.
+
+## Estrutura do Banco de Dados
+
+O banco de dados é chamado `Reservas_Hotel` e consiste nas seguintes tabelas:
+
+- **Hospedes**: Armazena informações sobre os hóspedes, como nome, telefone e e-mail.
+- **Quartos**: Contém detalhes sobre os quartos do hotel, incluindo o número do quarto, tipo e preço.
+- **Reservas**: Registra as reservas realizadas por hóspedes em quartos específicos, com datas de check-in e check-out.
+
+### Tabelas:
+
+1. **Hospedes**:
+    - `hospedeID`: Chave primária (auto-incremento).
+    - `nome`: Nome do hóspede (não nulo).
+    - `telefone`: Telefone de contato do hóspede.
+    - `email`: Endereço de e-mail do hóspede.
+
+2. **Quartos**:
+    - `quartoID`: Chave primária.
+    - `numero`: Número único do quarto (não nulo e único).
+    - `tipo`: Tipo do quarto (e.g., presidencial, suite, etc.).
+    - `preco`: Preço da diária do quarto (não nulo).
+
+3. **Reservas**:
+    - `reservaID`: Chave primária (auto-incremento).
+    - `hospedeID`: Chave estrangeira referenciando a tabela `Hospedes`.
+    - `quartoID`: Chave estrangeira referenciando a tabela `Quartos`.
+    - `dataChekin`: Data de check-in (não nulo).
+    - `dataChekout`: Data de check-out (não nulo).
+
+## Comandos SQL
+
+### Criação do Banco de Dados e Tabelas
+
+- O código inicial cria o banco de dados `Reservas_Hotel` e as tabelas `Hospedes`, `Quartos`, e `Reservas`.
+- As chaves estrangeiras asseguram que as relações entre hóspedes, quartos e reservas sejam mantidas.
+
+### Inserção de Dados
+
+- O código insere exemplos de registros nas tabelas `Hospedes`, `Quartos` e `Reservas` para testar o sistema.
+
+### Consultas
+
+- Uma consulta exibe os detalhes de todas as reservas com informações sobre o hóspede, quarto, e datas de check-in e check-out.
+- Outra consulta retorna os quartos disponíveis em um intervalo específico.
+
+### Atualizações
+
+- O código atualiza informações de hóspedes e quartos.
+
+### Exclusões
+
+- Comandos de exclusão permitem remover reservas e hóspedes do banco de dados.
+
+## Como Utilizar
+
+1. Clone este repositório:
+   ```
+    git clone https://github.com/seu-usuario/sistema-reservas-hotel.git
+    ```
+3. Execute o script SQL em seu servidor MySQL ou MariaDB para criar o banco de dados e as tabelas:
+    ```sql
+    source caminho/para/seu/arquivo.sql;
+    ```
+4. Execute as consultas, inserções e atualizações conforme necessário para testar o sistema.
+
+## Requisitos
+
+- MySQL ou MariaDB instalado em seu sistema.
+- Cliente de linha de comando ou software GUI como MySQL Workbench para executar os scripts SQL.
+
+## Contribuição
+
+Sinta-se à vontade para abrir issues ou pull requests para melhorias ou correções neste projeto.
+
+## Licença
+
+Este projeto está licenciado sob a MIT License. Consulte o arquivo `LICENSE` para mais detalhes.
